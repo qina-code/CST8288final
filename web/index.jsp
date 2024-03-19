@@ -21,7 +21,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     <div class="container">
         <h2>FWRP System</h2>
         <a href="http://localhost:8080/FWRP/user/registration.html">Registration</a>   
-                <a href="http://localhost:8080/FWRP/user/login.html">Login</a>       
+        <a href="http://localhost:8080/FWRP/user/login.html">Login</a>       
         <a href="http://localhost:8080/FWRP/inventory/management.html">Inventory Management</a>
 
 </body>

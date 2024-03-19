@@ -45,12 +45,13 @@ public class UserDAOImpl extends UserDAO {
         	Connection connection = DBConnection.getConnection();
 		try {
 			//prepare query
-			PreparedStatement pstmt = connection.prepareStatement("Insert into user(name, email,password, subscribed ) "
-					+ "Values(?, ?, ?, ?)");
+			PreparedStatement pstmt = connection.prepareStatement("INSERT INTO user (name, email, password, type, subscribed) "
+            + "VALUES (?, ?, ?, ?, ?)");
 			pstmt.setString(1, user.getName());
 			pstmt.setString(2, user.getEmail());
 			pstmt.setString(3, user.getPassword());
-			pstmt.setBoolean(4, user.getSubscribed());			
+                        pstmt.setString(4, user.getType());
+			pstmt.setBoolean(5, user.getSubscribed());			
 			//execute
 			pstmt.executeUpdate();
 			

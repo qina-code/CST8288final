@@ -69,7 +69,7 @@ public class LoginFormServlet extends HttpServlet {
         User userFound = userDAO.getUserByEmail(request.getParameter("email"));
         if(userFound!= null && userFound.getPassword().equals(request.getParameter("password"))){
             System.out.println("valid");
-            response.sendRedirect("https://http://localhost:8080/FWRP/inventory/management");
+            response.sendRedirect("http://localhost:8080/FWRP/inventory/management.html");
         }else{
             System.out.println("invalid");
         }
@@ -91,7 +91,8 @@ public class LoginFormServlet extends HttpServlet {
         User userFound = userDAO.getUserByEmail(request.getParameter("email"));
         if(userFound!= null && userFound.getPassword().equals(request.getParameter("password"))){
             System.out.println("valid");
-            response.sendRedirect("https://http://localhost:8080/FWRP/inventory/management");
+            response.sendRedirect("http://localhost:8080/FWRP/inventory/management.html");
+            
         }else{
             System.out.println("invalid");
         }

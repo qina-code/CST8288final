@@ -18,6 +18,8 @@ import java.util.*;
 public class DBConnection {
 	
 	private static Connection connection = null;
+//        private static final String PROPERTIES_FILE_PATH = "src/data/database.properties";
+          private static final String PROPERTIES_FILE_PATH = "C:\\Users\\User\\Documents\\NetBeansProjects\\FWRP\\src\\data\\database.properties";
 
 
 	private DBConnection() {
@@ -26,10 +28,12 @@ public class DBConnection {
 		    Properties props = new Properties();
 		    
 		    try {
-		        InputStream in = Files.newInputStream(Paths.get("src/data/database.properties"));
+		        InputStream in = Files.newInputStream(Paths.get(PROPERTIES_FILE_PATH));
 		        props.load(in);
 		        in.close();
 		    } catch (IOException e) {
+                        System.err.println("ERROR: database.properties file not found at path: " + PROPERTIES_FILE_PATH);
+
 		        e.printStackTrace();
 		    }
 
@@ -40,17 +44,24 @@ public class DBConnection {
 			connection = DriverManager.getConnection(serverUrl, userString, passwordString);
 			  
 		}catch (SQLException e){
-			e.printStackTrace();
 		}
 	};
 	
 	public static Connection getConnection() {
-		if(connection == null) {
-			new DBConnection();
-		}
-		return connection;
-	}
-	
+            if(connection == null) {
+                new DBConnection();
+            }
+            return connection;
+        }
 
+        public static void closeConnection() {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 	
 }

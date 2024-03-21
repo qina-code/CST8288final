@@ -8,9 +8,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory Management</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="navbar">
+        <a href="../index.jsp">Home</a>
+        <a href="registration.html">Registration</a>
+        <a href="login.html">Login</a>
+    </div>
+
     <div class="container">
         <h2>Inventory Management</h2>
         <form id="inventoryForm">
@@ -28,7 +34,41 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             </div>
             <button type="submit">Add Item</button>
         </form>
+
+        <h2>Surplus Food Identification</h2>
+        <form id="surplusIdentificationForm">
+            <div class="form-group">
+                <label for="surplusItem">Select Surplus Item:</label>
+                <select id="surplusItem" name="surplusItem" required>
+                    <!-- Options for surplus items will be dynamically populated -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="surplusReason">Reason for Surplus:</label>
+                <textarea id="surplusReason" name="surplusReason" rows="4" required></textarea>
+            </div>
+            <button type="submit">Identify Surplus</button>
+        </form>
+
+        <h2>List Surplus Food Items</h2>
+        <form id="listSurplusItemsForm">
+            <div class="form-group">
+                <label for="listedItem">Surplus Item:</label>
+                <select id="listedItem" name="listedItem" required>
+                    <!-- Options for listed surplus items will be dynamically populated -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="listingType">Listing Type:</label>
+                <select id="listingType" name="listingType" required>
+                    <option value="donation">Donation</option>
+                    <option value="sale">Sale (Discounted Price)</option>
+                </select>
+            </div>
+            <button type="submit">List Item</button>
+        </form>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

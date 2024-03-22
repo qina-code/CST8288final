@@ -14,5 +14,5 @@ public abstract class UserDAO {
     
     public abstract User getUserByEmail(String email);
     
-    public abstract void createUser(User user);
+    public abstract int createUser(User user);
 }

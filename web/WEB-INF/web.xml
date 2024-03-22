@@ -5,6 +5,8 @@
             index.jsp
         </welcome-file>
     </welcome-file-list>
+   
+    <!--login--> 
 <servlet>
     <servlet-name>LoginFormServlet</servlet-name>
     <servlet-class>Controller.LoginFormServlet</servlet-class>
@@ -14,7 +16,28 @@
     <servlet-name>LoginFormServlet</servlet-name>
     <url-pattern>/user/LoginFormServlet</url-pattern>
 </servlet-mapping>
+<!--regiser-->
+<servlet>
+    <servlet-name>RegistrationFormServlet</servlet-name>
+    <servlet-class>Controller.RegistrationFormServlet</servlet-class>
+</servlet>
 
+<servlet-mapping>
+    <servlet-name>RegistrationFormServlet</servlet-name>
+    <url-pattern>/user/RegistrationFormServlet</url-pattern>
+</servlet-mapping>
+
+
+<!--log out-->
+<servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>Controller.LogoutServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/user/LogoutServlet</url-pattern>
+</servlet-mapping>
     <session-config>
         <session-timeout>
             30

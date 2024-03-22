@@ -41,7 +41,7 @@ public class UserDAOImpl extends UserDAO {
     }
 
     @Override
-    public void createUser(User user) {
+    public int createUser(User user) {
         	Connection connection = DBConnection.getConnection();
 		try {
 			//prepare query
@@ -53,10 +53,11 @@ public class UserDAOImpl extends UserDAO {
                         pstmt.setString(4, user.getType());
 			pstmt.setBoolean(5, user.getSubscribed());			
 			//execute
-			pstmt.executeUpdate();
-			
+			int rowsAffected = pstmt.executeUpdate();
+			return rowsAffected;
 		} catch (SQLException e) {
 			e.printStackTrace();
+                        return 0;
 		} 
     }
     

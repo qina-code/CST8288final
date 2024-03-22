@@ -16,7 +16,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         console.log("Login data:",  email, password);
         //send login request to backend
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "/LoginFormServlet", true); 
+        xhr.open("POST", "http://localhost:8080/FWRP//user/LoginFormServlet", true); 
         xhr.setRequestHeader("text/html;charset=UTF-8");
         
     } else {

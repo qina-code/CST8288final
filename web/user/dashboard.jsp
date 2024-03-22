@@ -60,5 +60,6 @@
             <a href="http://localhost:8080/FWRP/user/LogoutServlet">Log Out</a>
         </div>
         </div>
+            <jsp:include page="../footer.jsp" />
     </body>
 </html>

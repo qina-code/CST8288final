@@ -69,8 +69,10 @@ button:hover {
     background-color: #007bff;
     overflow: hidden;
 }
-.navbar h2 {
+.navbar .project_name {
     display:inline-block;
+    font-size: 40px;
+    weight:900;
     float:left;
     color:white;
     margin-left: 20px

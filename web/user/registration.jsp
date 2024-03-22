@@ -72,6 +72,7 @@
             <button type="submit">Register</button>
         </form>
     </div>
+        <jsp:include page="../footer.jsp" />
     <!--<script src="registration_script.js"></script>-->
 </body>
 </html>

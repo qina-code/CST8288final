@@ -43,6 +43,7 @@
             <button type="submit">Log in</button>
         </form>
     </div>
+            <jsp:include page="../footer.jsp" />
     <!--<script src="login_script.js"></script>-->
 </body>
 </html>

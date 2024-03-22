@@ -17,7 +17,7 @@
 <body>
 
 <div class="navbar">
-    <h2>FWRP</h2>
+    <a class="project_name" href="http://localhost:8080/FWRP">FWRP</a>
     <nav >
         
         <%-- Check if user is logged in --%>

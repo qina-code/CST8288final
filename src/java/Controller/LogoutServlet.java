@@ -17,8 +17,7 @@ import model.User;
  *
  * @author User
  */
-public class LoginFormServlet extends HttpServlet {
-
+public class LogoutServlet extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -28,22 +27,12 @@ public class LoginFormServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.print("Receibing POST request");
-        UserDAOImpl userDAO = new UserDAOImpl();
-        User userFound = userDAO.getUserByEmail(request.getParameter("email"));
-        if(userFound!= null && userFound.getPassword().equals(request.getParameter("password"))){
-            System.out.println("valid");
-            // Store user information in session
-            request.getSession().setAttribute("user", userFound);
-            response.sendRedirect("http://localhost:8080/FWRP/user/dashboard.jsp");
-            
-        }else{
-            System.out.println("invalid");
-            // Redirect to login page with an alert
-            response.sendRedirect("http://localhost:8080/FWRP/user/login.jsp?error=invalid");
-        }
+        System.out.print("Receibing GET request");
+            // Delete user information in session
+            request.getSession().removeAttribute("user");
+            response.sendRedirect("http://localhost:8080/FWRP");
     }
 
     /**

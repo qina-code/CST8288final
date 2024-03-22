@@ -1,8 +1,11 @@
+<%-- 
+    Document   : registration
+    Created on : Mar 22, 2024, 3:47:49 PM
+    Author     : User
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,10 +13,35 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     <title>Food Waste Reduction Platform - Registration</title>
     <link rel="stylesheet" href="../styles.css">
 </head>
+
 <body>
+    <jsp:include page="../header.jsp" />
     <div class="container">
         <h2>Registration</h2>
-        <form id="registrationForm" method="POST">
+                 <%
+        // Check if there is an error parameter in the URL
+        String error = request.getParameter("error");
+        if (error != null && error.equals("fail")) {
+    %>
+        <script>
+            alert("Registration failed! Please try again!");
+        </script>
+    <%
+        }
+    %>
+    <%
+     if (error != null && error.equals("email_exists")) {
+    %>
+        <script>
+            alert("Email already being used!");
+        </script>
+    <%
+        }
+    %>
+    
+        <!--<form id="registrationForm" method="POST">-->
+        <form id="registrationForm" action="RegistrationFormServlet"  method="POST">
+
             <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
@@ -32,12 +60,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     <option value="">Select User Type</option>
                     <option value="retailer">Retailer</option>
                     <option value="consumer">Consumer</option>
-                    <option value="charitableOrg">Charitable Organization</option>
+                    <option value="charitable_organization">Charitable Organization</option>
                 </select>
             </div>
+           
+            <div class="form-group">
+            <label for="subscribed">Subscribed:</label>
+            <input type="checkbox" id="subscribed" name="subscribed">    
+            </div>
+            
             <button type="submit">Register</button>
         </form>
     </div>
-    <script src="registration_script.js"></script>
+        <jsp:include page="../footer.jsp" />
+    <!--<script src="registration_script.js"></script>-->
 </body>
 </html>

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : user_dashboard
-    Created on : Mar 21, 2024, 11:56:02 AM
+    Document   : transaction.jsp
+    Created on : Mar 24, 2024, 12:27:22 PM
     Author     : User
 --%>
 
@@ -19,39 +19,42 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>User Dashboard</title>
+        <title>Transaction History</title>
         <link rel="stylesheet" href="../styles.css">
     </head>
     <body>
         <jsp:include page="../header.jsp" />
         <div class="container">
         <%
+                   // Convert user type to lowercase for case-insensitive comparison
+            String userType = user.getType().toLowerCase();
+              
             if(user != null) {
-                out.println("<h2> Welcome, " + user.getName() + "!</h2>");
-                out.println("<p>Your user type is: " + user.getType() + ".</p>");
-
-       // Convert user type to lowercase for case-insensitive comparison
-                String userType = user.getType().toLowerCase();
+                out.println("<h2> View your" + userType + "transaction</h2>");
 
                 // Show different links based on user type
                 if (userType.equals("retailer")) {
         %>
-                    <!-- Show links for admin -->
+                    <!-- Show retailer transaction -->
+                    <p>retailer history here: Date, time, item name, quantity, price/per, total price</p>
+                    <p>modify item db, add owner, and price/per  </p>
+
                     
-                        <a class="dashboard_btn" href="http://localhost:8080/FWRP/inventory/management.html">Inventory Management</a>
         <%
                 } else if (userType.equals("consumer")) {
         %>
-                    <!-- Show links for customer -->
-                        <a class="dashboard_btn" href="url">Purchase Food</a>
+                    <!-- Show consumer transaction -->
+                    <p>consumer history here</p>
+
         <%
                 } else if(userType.equals("charitable_organization")){
 %>
-                        <a class="dashboard_btn" href="url">Claim Food</a>
+<!-- Show organization transaction -->
+                    <p>charitable organization history here</p>
              <%       }
             }
         %>
-            <a class="dashboard_btn" href="http://localhost:8080/FWRP/user/transaction.jsp">View Transaction</a>
+            
         </div>
             <jsp:include page="../footer.jsp" />
     </body>

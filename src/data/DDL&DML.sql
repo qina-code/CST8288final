@@ -15,7 +15,7 @@ create table user(
 
 insert into user(name, email, password, type, subscribed) value("qiu", "qiu@gmail.com", "Aa123456","retailer",false);
 insert into user(name, email, password, type, subscribed) value("le", "le@gmail.com", "Aa123456","consumer",true);
-insert into user(name, email, password, type, subscribed) value("yu","yu@gmail.com", "Aa123456","organization",true);
+insert into user(name, email, password, type, subscribed) value("yu","yu@gmail.com", "Aa123456","charitable_organization",true);
 
 create table itemInventory(
 	id INT primary key auto_increment,

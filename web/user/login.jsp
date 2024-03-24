@@ -1,8 +1,12 @@
+<%-- 
+    Document   : login.jsp
+    Created on : Mar 22, 2024, 3:46:33 PM
+    Author     : User
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,8 +15,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+    <jsp:include page="../header.jsp" />
     <div class="container">
         <h2>Log in</h2>
+         <%
+        // Check if there is an error parameter in the URL
+        String error = request.getParameter("error");
+        if (error != null && error.equals("invalid")) {
+    %>
+        <script>
+            alert("Invalid username or password!");
+        </script>
+    <%
+        }
+    %>
         <form id="loginForm" ACTION="LoginFormServlet" method="POST">
 
             <div class="form-group">
@@ -27,6 +43,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             <button type="submit">Log in</button>
         </form>
     </div>
+            <jsp:include page="../footer.jsp" />
     <!--<script src="login_script.js"></script>-->
 </body>
 </html>

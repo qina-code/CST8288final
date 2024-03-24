@@ -9,6 +9,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 */
 
 /* Global styles */
+
+        
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
@@ -71,23 +73,26 @@ button:hover {
     overflow: hidden;
     padding: 10px 0;
 }
-
-.navbar .logo {
-    float: left;
-    color: #fff;
-    font-size: 24px;
-    margin-left: 20px;
+.navbar .project_name {
+    display:inline-block;
+    font-size: 40px;
+    weight:900;
+    float:left;
+    color:white;
+    margin-left: 20px
 }
 
-.navbar nav {
-    float: right;
-}
+
+
 
 .navbar a {
-    display: inline-block;
+    float: right;
+    display: block;
     color: #fff;
-    text-align: center;
-    padding: 10px 20px;
+    line-height: 67px;
+    vertical-align: auto;
+    padding: 0 20px;
+
     text-decoration: none;
 }
 

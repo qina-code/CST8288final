@@ -14,18 +14,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    max-width: 800px; /* Adjusted max-width for consistency */
-    margin: 0 auto;
+    max-width: 800px;
+    margin: 20px auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
+h1, h2 {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -39,15 +41,16 @@ label {
 }
 
 input[type="text"],
-input[type="email"],
-input[type="password"],
+input[type="number"],
+input[type="date"],
 select,
 textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box; /* Ensures padding is included in width */
+    box-sizing: border-box;
+    margin-bottom: 10px;
 }
 
 button {
@@ -64,10 +67,11 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Additional styles for specific elements */
+/* Navbar styles */
 .navbar {
     background-color: #007bff;
     overflow: hidden;
+    padding: 10px 0;
 }
 .navbar .project_name {
     display:inline-block;
@@ -79,6 +83,8 @@ button:hover {
 }
 
 
+
+
 .navbar a {
     float: right;
     display: block;
@@ -86,14 +92,10 @@ button:hover {
     line-height: 67px;
     vertical-align: auto;
     padding: 0 20px;
+
     text-decoration: none;
 }
 
 .navbar a:hover {
     background-color: #0056b3;
-}
-
-#surplusIdentificationForm,
-#listSurplusItemsForm {
-    margin-top: 40px; 
 }

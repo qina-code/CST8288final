@@ -16,4 +16,5 @@ public interface ItemDAO {
     boolean updateItemQuantity(int itemId, int newQuantity);
     List<Item> getItems();
     List<Item> getSurplusItems();
+    
 }

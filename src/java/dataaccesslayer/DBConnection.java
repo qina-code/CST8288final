@@ -18,7 +18,7 @@ import java.util.*;
 public class DBConnection {
 	
 	private static Connection connection = null;
-//        private static final String PROPERTIES_FILE_PATH = "src/data/database.properties";
+ //       private static final String PROPERTIES_FILE_PATH = "../../../data/database.properties";
           private static final String PROPERTIES_FILE_PATH = "C:\\Users\\pc\\Documents\\NetBeansProjects\\CST8288final\\src\\data\\database.properties";
 
 

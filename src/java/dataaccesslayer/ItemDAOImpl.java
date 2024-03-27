@@ -29,7 +29,7 @@ public class ItemDAOImpl implements ItemDAO {
     @Override
     public boolean addItem(Item item) {
     try {
-        String query = "INSERT INTO items (name, quantity, expiration_date) VALUES (?, ?, ?)";
+        String query = "INSERT INTO itemInventory (name, quantity, expirationDate) VALUES (?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, item.getName());
         preparedStatement.setInt(2, item.getQuantity());
@@ -47,7 +47,7 @@ public class ItemDAOImpl implements ItemDAO {
     @Override
     public boolean updateItemQuantity(int itemId, int newQuantity) {
         try {
-            String query = "UPDATE items SET quantity = ? WHERE id = ?";
+            String query = "UPDATE itemInventory SET quantity = ? WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, newQuantity);
             preparedStatement.setInt(2, itemId);
@@ -64,7 +64,7 @@ public class ItemDAOImpl implements ItemDAO {
     public List<Item> getItems() {
         List<Item> items = new ArrayList<>();
         try {
-            String query = "SELECT * FROM items";
+            String query = "SELECT * FROM itemInventory";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
@@ -73,7 +73,7 @@ public class ItemDAOImpl implements ItemDAO {
                 item.setId(resultSet.getInt("id"));
                 item.setName(resultSet.getString("name"));
                 item.setQuantity(resultSet.getInt("quantity"));
-                item.setExpirationDate(resultSet.getDate("expiration_date"));
+                item.setExpirationDate(resultSet.getDate("expirationDate"));
                 items.add(item);
             }
         } catch (SQLException e) {
@@ -89,7 +89,7 @@ public List<Item> getSurplusItems() {
     // You can modify the SQL query to retrieve items nearing expiration or in excess of demand
     List<Item> surplusItems = new ArrayList<>();
     try {
-        String query = "SELECT * FROM items WHERE expiration_date <= DATE_ADD(CURDATE(), INTERVAL 7 DAY)";
+        String query = "SELECT * FROM itemInventory WHERE expirationDate <= DATE_ADD(CURDATE(), INTERVAL 7 DAY)";
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
 
@@ -98,7 +98,7 @@ public List<Item> getSurplusItems() {
             item.setId(resultSet.getInt("id"));
             item.setName(resultSet.getString("name"));
             item.setQuantity(resultSet.getInt("quantity"));
-            item.setExpirationDate(resultSet.getDate("expiration_date"));
+            item.setExpirationDate(resultSet.getDate("expirationDate"));
             surplusItems.add(item);
         }
     } catch (SQLException e) {

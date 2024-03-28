@@ -51,7 +51,7 @@
              <%       }
             }
         %>
-            <a class="dashboard_btn" href="http://localhost:8080/FWRP/user/transaction.jsp">View Transaction</a>
+            <a class="dashboard_btn" href="http://localhost:8080/FWRP/user/TransactionServlet">View Transaction</a>
         </div>
             <jsp:include page="../footer.jsp" />
     </body>

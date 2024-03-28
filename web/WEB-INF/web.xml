@@ -38,6 +38,19 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/user/LogoutServlet</url-pattern>
 </servlet-mapping>
+
+
+    <!--transactions--> 
+<servlet>
+    <servlet-name>TransactionServlet</servlet-name>
+    <servlet-class>Controller.TransactionServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>TransactionServlet</servlet-name>
+    <url-pattern>/user/TransactionServlet</url-pattern>
+</servlet-mapping>
+
     <session-config>
         <session-timeout>
             30

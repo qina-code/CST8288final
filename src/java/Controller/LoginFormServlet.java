@@ -30,17 +30,17 @@ public class LoginFormServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.print("Receibing POST request");
+        System.out.println("Receiving POST request");
         UserDAOImpl userDAO = new UserDAOImpl();
         User userFound = userDAO.getUserByEmail(request.getParameter("email"));
         if(userFound!= null && userFound.getPassword().equals(request.getParameter("password"))){
-            System.out.println("valid");
+            System.out.println("valid login");
             // Store user information in session
             request.getSession().setAttribute("user", userFound);
             response.sendRedirect("http://localhost:8080/FWRP/user/dashboard.jsp");
             
         }else{
-            System.out.println("invalid");
+            System.out.println("invalid login");
             // Redirect to login page with an alert
             response.sendRedirect("http://localhost:8080/FWRP/user/login.jsp?error=invalid");
         }

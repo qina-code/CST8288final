@@ -43,4 +43,23 @@
             30
         </session-timeout>
     </session-config>
+    
+      <!--Show Items--> 
+    <servlet>
+    <servlet-name>ItemListServlet</servlet-name>
+    <servlet-class>Controller.ItemListServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>ItemListServlet</servlet-name>
+    <url-pattern>/charity/ItemListServlet</url-pattern>
+</servlet-mapping>
+<!--Buy Items--> 
+<servlet>
+    <servlet-name>PurchaseServlet</servlet-name>
+    <servlet-class>Controller.PurchaseServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>PurchaseServlet</servlet-name>
+    <url-pattern>/charity/PurchaseServlet</url-pattern>
+</servlet-mapping>
 </web-app>

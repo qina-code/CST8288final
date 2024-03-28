@@ -49,8 +49,13 @@ public class PurchaseServlet extends HttpServlet {
                     }
                 }
             }
-
-            //STEP 3 ： Check each item's availability
+            //STEP 3： No item selected situation
+            boolean anyQuantitySelected = quantities.values().stream().anyMatch(qty -> qty > 0);
+            if (!anyQuantitySelected) {
+                request.getSession().setAttribute("error", "You have not selected any items.");
+                response.sendRedirect("ItemListServlet"); 
+            }
+            //STEP 4 ： Check each item's availability
             for (Map.Entry<Integer, Integer> entry : quantities.entrySet()) {
                 int itemId = entry.getKey();
                 int requestedQuantity = entry.getValue();
@@ -64,7 +69,7 @@ public class PurchaseServlet extends HttpServlet {
                 }
             }
 
-            //STEP 4 ： Update Inventory
+            //STEP 5 ： Update Inventory
             if (allItemsAvailable) {
                 quantities.forEach((itemId, quantity) -> {
                     Item item = itemDAO.getItemById(itemId);
@@ -72,14 +77,10 @@ public class PurchaseServlet extends HttpServlet {
 
                 });
                 purchaseSuccessful = true;
-//                int confirmationNumber = (int) (Math.random() * 1000000);
-//                request.getSession().setAttribute("confirmationNumber", confirmationNumber);
-//                request.getSession().setAttribute("purchasedItems", quantities); // Consider converting to a more descriptive format
-//                response.sendRedirect("http://localhost:8080/FWRP/charity/orderConfirmation.jsp");
 
             } else {
                 purchaseSuccessful = false;
-                response.getWriter().write("Purchase failed due to insufficient stock");
+                response.getWriter().write("Purchase failed, please have another try!");
 
             }
             if (purchaseSuccessful) {
@@ -93,7 +94,7 @@ public class PurchaseServlet extends HttpServlet {
                 Map<String, Integer> purchasedItemsInfo = new HashMap<>();
                 for (Map.Entry<Integer, Integer> entry : quantities.entrySet()) {
                     Item item = itemDAO.getItemById(entry.getKey());
-                    if (item != null) { 
+                    if (item != null) {
                         purchasedItemsInfo.put(item.getName(), entry.getValue());
                     }
                 }
@@ -101,16 +102,15 @@ public class PurchaseServlet extends HttpServlet {
                 // Store purchase summary in the session
                 request.getSession().setAttribute("confirmationNumber", Integer.toString(confirmationNumber));
                 request.getSession().setAttribute("purchasedItems", purchasedItemsInfo);
-             
-    System.out.println("Purchased Items: " + purchasedItemsInfo.toString());
+
+                System.out.println("Purchased Items: " + purchasedItemsInfo.toString());
                 response.sendRedirect("orderConfirmation.jsp");
 
-                // response.getWriter().write("{\"success\": true, \"message\": \"Purchase successful\", \"redirect\": \"orderConfirmation.jsp\"}");
             } else {
                 // If not successful, also return a JSON response indicating failure
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
-               
+
             }
 
         } catch (NumberFormatException e) {

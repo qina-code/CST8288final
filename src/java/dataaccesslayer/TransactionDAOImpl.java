@@ -49,7 +49,7 @@ public class TransactionDAOImpl implements TransactionDAO{
                 int purchaserId = purchaserResultSet.getInt("purchaser_id");
                 Date transactionTime = purchaserResultSet.getDate("transaction_time");
                 
-                Transaction t = new Transaction(itemId, quantity, purchaserId, transactionTime);
+                Transaction t = new Transaction(quantity, itemId, purchaserId, transactionTime);
                 purchaserTransactions.add(t);
                 
             }
@@ -92,7 +92,8 @@ public class TransactionDAOImpl implements TransactionDAO{
                 int purchaserId = retailerTransactionResultSet.getInt("purchaser_id");
                 Date transactionTime = retailerTransactionResultSet.getDate("transaction_time");
                 
-                Transaction t = new Transaction(itemId, quantity, purchaserId, transactionTime);
+                Transaction t = new Transaction(quantity, itemId, purchaserId, transactionTime);
+               
                 retailerTransactions.add(t);            
             }
             

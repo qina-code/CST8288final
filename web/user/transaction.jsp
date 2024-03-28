@@ -28,20 +28,41 @@
 <jsp:include page="../header.jsp" />
 <div class="container">
     <h1>Transactions</h1>
-    <ul>
-        <% 
-            List<Transaction> transactions = (List<Transaction>) session.getAttribute("transactions");
-            if (transactions != null) {
-                for (Transaction transaction : transactions) { 
-        %>
-            <li><%= transaction %></li>
-        <% 
-                } 
-            } else { 
-        %>
-            <li>No transactions available</li>
-        <% } %>
-    </ul>
+    <h3>Hi <%= user.getName() %>, Your role is: <%= user.getType() %> </h3>
+    <h3>Here's your transaction </h3>
+
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Item ID</th>
+                <th>Purchaser ID</th>
+                <th>Quantity</th>
+                <th>Transaction Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% 
+                List<Transaction> transactions = (List<Transaction>) session.getAttribute("transactions");
+                if (transactions != null) {
+                    for (Transaction transaction : transactions) { 
+            %>
+                <tr>
+                    <td><%= transaction.getItemInventoryId() %></td>
+                    <td><%= transaction.getPurchaserId() %></td>
+                    <td><%= transaction.getQuantity() %></td>
+                    <td><%= transaction.getTransactionTime() %></td>
+                </tr>
+            <% 
+                    } 
+                } else { 
+            %>
+                <tr>
+                    <td colspan="4">No transactions available</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
 </div>
 <jsp:include page="../footer.jsp" />
 </body>

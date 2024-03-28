@@ -98,7 +98,12 @@ public class TransactionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //put purchase into database
+        String itemName = request.getParameter("itemname");
+        User user = (User) request.getSession().getAttribute("user");
+        String email = user.getEmail();
+
+        
     }
 
     /**

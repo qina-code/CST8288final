@@ -12,6 +12,7 @@ import dataaccesslayer.DBConnection;
 import dataaccesslayer.ItemDAO;
 import dataaccesslayer.ItemDAOImpl;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,14 +60,23 @@ public class CustomerPurchaseServlet extends HttpServlet {
             // If purchase is successful, prepare success response
             int confirmationNumber = (int) (Math.random() * 1000000); // Generate confirmation number
             request.getSession().setAttribute("customerconfirmationNumber", Integer.toString(confirmationNumber));
-
+            BigDecimal totalPrice = new BigDecimal("0.00");
+            int totalQuantity = 0;
+            Map<String, BigDecimal> lineTotals = new HashMap<>();
             Map<String, Integer> purchasedItemsInfo = new HashMap<>();
             for (Map.Entry<Integer, Integer> entry : quantities.entrySet()) {
                 Item item = itemDAO.getItemById(entry.getKey());
                 if (item != null) {
                     purchasedItemsInfo.put(item.getName(), entry.getValue());
                 }
-                
+                BigDecimal lineTotal = item.getPrice().multiply(new BigDecimal(entry.getValue()));
+                lineTotals.put(item.getName(), lineTotal);
+                totalQuantity += entry.getValue();
+                totalPrice = totalPrice.add(lineTotal);
+                request.getSession().setAttribute("lineTotals", lineTotals);
+                request.getSession().setAttribute("totalQuantity", totalQuantity);
+                request.getSession().setAttribute("totalPrice", totalPrice);
+
             }
             request.getSession().setAttribute("customerpurchasedItems", purchasedItemsInfo);
             response.sendRedirect("purchaseSuccessful.jsp"); // Redirect to success page

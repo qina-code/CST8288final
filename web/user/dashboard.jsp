@@ -44,18 +44,18 @@
             %>
             <!-- Show links for customer -->
 
-            <div>
-                <a href="http://localhost:8080/FWRP/customer/ItemListCustomerServlet">Purchase Food</a>
-            </div>
+
+            <a class="dashboard_btn" href="http://localhost:8080/FWRP/customer/ItemListCustomerServlet">Purchase Food</a>
+
             <%
-                    } else if(userType.equals("charitable_organization")){
+            } else if (userType.equals("charitable_organization")) {
             %>
-            <div>
-                <a href="http://localhost:8080/FWRP/charity/ItemListServlet">Claim Food</a>
-            </div>
+
+            <a class="dashboard_btn" href="http://localhost:8080/FWRP/charity/ItemListServlet">Claim Food</a>
+
 
             <%       }
-           }
+                }
             %>
             <a class="dashboard_btn" href="http://localhost:8080/FWRP/user/TransactionServlet">View Transaction</a>
         </div>

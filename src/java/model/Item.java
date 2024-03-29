@@ -5,22 +5,26 @@
 package model;
 
 import java.util.Date;
+import java.math.BigDecimal;
 
 public class Item {
+
     private int id;
     private String name;
     private int quantity;
     private Date expirationDate;
+    private BigDecimal price;
 
     public Item() {
         // Default constructor
     }
 
-    public Item(int id, String name, int quantity, Date expirationDate) {
+    public Item(int id, String name, int quantity, Date expirationDate,BigDecimal price) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
         this.expirationDate = expirationDate;
+        this.price = price;
     }
 
     public int getId() {
@@ -53,5 +57,13 @@ public class Item {
 
     public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }

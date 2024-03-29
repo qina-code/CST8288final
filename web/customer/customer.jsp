@@ -31,6 +31,7 @@
                 %>
                 <div class="item-header">
                     <span class="item-name-header">Name</span>
+                
                     <span class="item-quantity-header">Quantity</span>
                 </div>
                 <div id="itemsList">
@@ -40,7 +41,8 @@
                             for (Item item : items) {
                     %>
                     <div class="item-row">
-                        <span class="item-name"><%= item.getName()%></span>
+                        <span class="item-name"><strong><%= item.getName()%></strong>  $<%= item.getPrice()%></span>
+                       
                         <div class="quantity-area">
                             <input type="number" class="item-quantity" id="quantity_<%= item.getId()%>" name="quantity_<%= item.getId()%>" value="0" min="0" max="<%= item.getQuantity()%>">
                             <span class="availability">Available: <%= item.getQuantity()%></span>

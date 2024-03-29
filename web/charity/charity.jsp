@@ -19,7 +19,7 @@
     <body>
         <jsp:include page="../header.jsp" />
         <div class="container">
-            <h2>Available Items for Purchase</h2>
+            <h2>Available Items for Claim</h2>
             <form action="PurchaseServlet" method="post" id="purchaseForm">
                  <% String errorMessage = (String) session.getAttribute("error");
                     if (errorMessage != null) {
@@ -30,7 +30,7 @@
                     }
                 %>
                 <div class="item-header">
-                    <span class="item-name-header">Name</span>
+                    <span class="item-name-header">Item</span>
                     <span class="item-quantity-header">Quantity</span>
                 </div>
                 <div id="itemsList">

@@ -15,8 +15,7 @@ import model.Item;
 
 public class ItemDAOImpl implements ItemDAO {
 
-    private final  Connection connection;
-
+    private final Connection connection;
 
     public ItemDAOImpl() {
         connection = DBConnection.getConnection();
@@ -30,12 +29,12 @@ public class ItemDAOImpl implements ItemDAO {
     @Override
     public boolean addItem(Item item) {
         try {
-            String query = "INSERT INTO itemInventory (name, quantity, expirationDate) VALUES (?, ?, ?)";
+            String query = "INSERT INTO itemInventory (name, quantity, expirationDate,price) VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, item.getName());
             preparedStatement.setInt(2, item.getQuantity());
             preparedStatement.setDate(3, new java.sql.Date(item.getExpirationDate().getTime()));
-
+            preparedStatement.setBigDecimal(4, item.getPrice());
             int rowsInserted = preparedStatement.executeUpdate();
             return rowsInserted > 0;
         } catch (SQLException e) {
@@ -73,6 +72,7 @@ public class ItemDAOImpl implements ItemDAO {
                 item.setId(resultSet.getInt("id"));
                 item.setName(resultSet.getString("name"));
                 item.setQuantity(resultSet.getInt("quantity"));
+                item.setPrice(resultSet.getBigDecimal("price"));
                 item.setExpirationDate(resultSet.getDate("expirationDate"));
                 items.add(item);
             }
@@ -98,6 +98,7 @@ public class ItemDAOImpl implements ItemDAO {
                 item.setId(resultSet.getInt("id"));
                 item.setName(resultSet.getString("name"));
                 item.setQuantity(resultSet.getInt("quantity"));
+                item.setPrice(resultSet.getBigDecimal("price"));
                 item.setExpirationDate(resultSet.getDate("expirationDate"));
                 surplusItems.add(item);
             }
@@ -121,6 +122,7 @@ public class ItemDAOImpl implements ItemDAO {
                 item.setId(resultSet.getInt("id"));
                 item.setName(resultSet.getString("name"));
                 item.setQuantity(resultSet.getInt("quantity"));
+                item.setPrice(resultSet.getBigDecimal("price"));
                 item.setExpirationDate(resultSet.getDate("expirationDate"));
             }
         } catch (SQLException e) {

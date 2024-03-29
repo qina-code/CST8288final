@@ -20,7 +20,31 @@
         <meta charset="UTF-8">
         <title>Order Confirmation</title>
         <link rel="stylesheet" href="../styles.css">
-       
+       <style>
+            .submit-area {
+                display: flex;
+                justify-content: space-between;
+                padding: 50px;
+                margin-bottom: 100px;
+                margin-top: 30px;
+            }
+            .submit-area button {
+                flex: 1;
+                margin: 0 10px;
+                padding: 10px 20px;
+                font-size: 1em;
+                height: 40px;
+            }
+
+            .submit-area button:first-child {
+                margin-right: 20px;
+            }
+
+            /* Specifically target the last button if needed */
+            .submit-area button:last-child {
+                margin-left: 20px;
+            }
+        </style>
     </head>
     <body>
         <jsp:include page="../header.jsp" />
@@ -57,6 +81,11 @@
                 <form action="http://localhost:8080/FWRP/charity/ItemListServlet" method="get">
                     <button type="submit">Buy More</button>
                 </form>
+
+                <form action="http://localhost:8080/FWRP/user/transaction.jsp" method="get">
+                    <button type="submit">View Transaction</button>
+                </form>
+            </div>
             </div>
         </div>
         <jsp:include page="../footer.jsp" />

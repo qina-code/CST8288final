@@ -63,7 +63,7 @@ public class ItemDAOImpl implements ItemDAO {
     public List<Item> getItems() {
         List<Item> items = new ArrayList<>();
         try {
-            String query = "SELECT * FROM itemInventory";
+            String query = "SELECT * FROM itemInventory where quantity != 0";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 

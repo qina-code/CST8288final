@@ -12,33 +12,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Food Waste Reduction Platform - Consumer</title>
+        <title>Charity Claim Food</title>
         <link rel="stylesheet" href="../styles.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $('#purchaseForm').on('submit', function (e) {
-                    e.preventDefault();
-
-                    var formData = $(this).serialize(); // Serialize the form data for AJAX submission
-
-                    $.ajax({
-                        url: 'PurchaseServlet',
-                        type: 'POST',
-                        data: formData,
-                        success: function (response) {
-
-                            alert("Purchase successful!");
-
-                        },
-                        error: function () {
-                            // Handle error
-                            alert("Purchase failed!");
-                        }
-                    });
-                });
-            });
-        </script>
     </head>
 
     <body>
@@ -46,6 +21,14 @@
         <div class="container">
             <h2>Available Items for Purchase</h2>
             <form action="PurchaseServlet" method="post" id="purchaseForm">
+                 <% String errorMessage = (String) session.getAttribute("error");
+                    if (errorMessage != null) {
+                %>
+                <script>alert("<%= errorMessage%>");</script>
+                <%
+                        session.removeAttribute("error"); // Remove the message after displaying
+                    }
+                %>
                 <div class="item-header">
                     <span class="item-name-header">Name</span>
                     <span class="item-quantity-header">Quantity</span>
@@ -68,13 +51,13 @@
                             }
                         } else {
                     %>
-                    <p>No items available for purchase.</p>
+                    <p>No items available for claim.</p>
                     <%
                         }
                     %>
                 </div>
                 <div class="submit-area">
-                    <button type="submit">Purchase Selected Items</button>
+                    <button type="submit">Claim Selected Items</button>
                 </div>
             </form>
         </div>

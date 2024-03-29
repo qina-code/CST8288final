@@ -45,7 +45,7 @@
         %>
                     <!-- Show links for customer -->
                     <div>
-                        <a href="http://localhost:8080/FWRP/charity/ItemListServlet">Purchase Food</a>
+                        <a href="http://localhost:8080/FWRP/customer/ItemListCustomerServlet">Purchase Food</a>
                     </div>
         <%
                 } else if(userType.equals("charitable_organization")){

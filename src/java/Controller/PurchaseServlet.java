@@ -84,10 +84,6 @@ public class PurchaseServlet extends HttpServlet {
 
             }
             if (purchaseSuccessful) {
-                // Set the content type to JSON for the AJAX response
-                response.setContentType("application/json");
-                response.setCharacterEncoding("UTF-8");
-
                 // Prepare data to send back
                 int confirmationNumber = (int) (Math.random() * 1000000);
                 // Convert purchasedItems map from ID-based to name-based for user readability
@@ -107,8 +103,7 @@ public class PurchaseServlet extends HttpServlet {
                 response.sendRedirect("orderConfirmation.jsp");
 
             } else {
-                // If not successful, also return a JSON response indicating failure
-                response.setContentType("application/json");
+        
                 response.setCharacterEncoding("UTF-8");
 
             }

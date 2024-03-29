@@ -58,7 +58,8 @@
                 <h3>Thank you <%= user.getName()%>!</h3>
                 <p>Your order has been placed successfully!</p>  
                 <p>Order Confirmation Number: <%= session.getAttribute("customerconfirmationNumber")%></p>
-                <p>Order Date and Time: <%= new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date())%></p>
+                <p>Order Date and Time: <%= session.getAttribute("customerordertime")%></p>
+
             </div>
             <div class="table-container">
                 <table>
@@ -92,7 +93,7 @@
                 <form action="http://localhost:8080/FWRP/customer/ItemListCustomerServlet" method="get">
                     <button type="submit">Buy More</button>
                 </form>
-                <form action="http://localhost:8080/FWRP/user/transaction.jsp" method="get">
+               <form action="http://localhost:8080/FWRP/user/TransactionServlet" method="get">
                     <button type="submit">View Transaction</button>
                 </form>
             </div>

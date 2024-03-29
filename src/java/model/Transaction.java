@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -11,16 +12,40 @@ import java.util.Date;
  * @author User
  */
 public class Transaction {
+
+    private int orderId;
     private int quantity;
     private int purchaserId;
     private int itemInventoryId;
-    private Date transactionTime;
+    private Timestamp transactionTime;
+    private String itemName;
 
-    public Transaction(int quantity, int purchaserId, int itemInventoryId, Date transactionTime) {
+    public Transaction() {
+        // Default constructor
+    }
+
+    public Transaction(int orderId, int quantity, int purchaserId, int itemInventoryId, Timestamp transactionTime) {
+        this.orderId = orderId;
         this.quantity = quantity;
         this.purchaserId = purchaserId;
         this.itemInventoryId = itemInventoryId;
         this.transactionTime = transactionTime;
+    }
+// Constructor with item name
+    public Transaction(int orderId, int quantity, int purchaserId, int itemInventoryId, String itemName, Timestamp transactionTime) {
+        this.orderId = orderId;
+        this.quantity = quantity;
+        this.purchaserId = purchaserId;
+        this.itemInventoryId = itemInventoryId;
+        this.itemName = itemName;  // Set the item name
+        this.transactionTime = transactionTime;
+    }
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public int getQuantity() {
@@ -47,11 +72,11 @@ public class Transaction {
         this.itemInventoryId = itemInventoryId;
     }
 
-    public Date getTransactionTime() {
+    public Timestamp getTransactionTime() {
         return transactionTime;
     }
 
-    public void setTransactionTime(Date transactionTime) {
+    public void setTransactionTime(Timestamp transactionTime) {
         this.transactionTime = transactionTime;
     }
 
@@ -59,7 +84,12 @@ public class Transaction {
     public String toString() {
         return "Transaction{" + "quantity=" + quantity + ", purchaserId=" + purchaserId + ", itemInventoryId=" + itemInventoryId + ", transactionTime=" + transactionTime + '}';
     }
-    
-    
 
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
 }

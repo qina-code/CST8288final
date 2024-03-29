@@ -20,6 +20,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Item;
+import dataaccesslayer.TransactionDAOImpl;
+import model.Transaction;
+import model.User;
 
 public class PurchaseServlet extends HttpServlet {
 
@@ -34,6 +37,17 @@ public class PurchaseServlet extends HttpServlet {
 
         boolean allItemsAvailable = false;
         boolean purchaseSuccessful = false;
+
+        User user = (User) request.getSession().getAttribute("user");
+        if (user == null) {
+            // Handle the case where the user is not logged in (e.g., redirect to login page)
+            response.sendRedirect("login.jsp"); // or wherever your login page is
+            return;
+        }
+        int userId = user.getId();
+        System.out.println("Using userId: " + user.getName());
+        System.out.println("Using userId: " + userId);
+        
         try {
 
             //STEP 2： Extract item quantities from request.
@@ -53,7 +67,7 @@ public class PurchaseServlet extends HttpServlet {
             boolean anyQuantitySelected = quantities.values().stream().anyMatch(qty -> qty > 0);
             if (!anyQuantitySelected) {
                 request.getSession().setAttribute("error", "You have not selected any items.");
-                response.sendRedirect("ItemListServlet"); 
+                response.sendRedirect("ItemListServlet");
             }
             //STEP 4 ： Check each item's availability
             for (Map.Entry<Integer, Integer> entry : quantities.entrySet()) {
@@ -86,24 +100,35 @@ public class PurchaseServlet extends HttpServlet {
             if (purchaseSuccessful) {
                 // Prepare data to send back
                 int confirmationNumber = (int) (Math.random() * 1000000);
+
                 // Convert purchasedItems map from ID-based to name-based for user readability
                 Map<String, Integer> purchasedItemsInfo = new HashMap<>();
                 for (Map.Entry<Integer, Integer> entry : quantities.entrySet()) {
                     Item item = itemDAO.getItemById(entry.getKey());
                     if (item != null) {
                         purchasedItemsInfo.put(item.getName(), entry.getValue());
+
+                        // Create a new transaction object for each item
+                        Transaction transaction = new Transaction();
+                        transaction.setOrderId(confirmationNumber);
+                        transaction.setQuantity(entry.getValue());
+                        transaction.setPurchaserId(userId);
+                        transaction.setItemInventoryId(entry.getKey());
+                        transaction.setTransactionTime(new java.sql.Timestamp(new java.util.Date().getTime()));
+                        TransactionDAOImpl transactionDAO = new TransactionDAOImpl();
+                        transactionDAO.createTransaction(transaction);
                     }
                 }
 
                 // Store purchase summary in the session
                 request.getSession().setAttribute("confirmationNumber", Integer.toString(confirmationNumber));
                 request.getSession().setAttribute("purchasedItems", purchasedItemsInfo);
-
+                request.getSession().setAttribute("charityordertime", new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date()));
                 System.out.println("Purchased Items: " + purchasedItemsInfo.toString());
                 response.sendRedirect("orderConfirmation.jsp");
 
             } else {
-        
+
                 response.setCharacterEncoding("UTF-8");
 
             }

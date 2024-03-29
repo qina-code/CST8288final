@@ -11,6 +11,7 @@ package Controller;
 import dataaccesslayer.DBConnection;
 import dataaccesslayer.ItemDAO;
 import dataaccesslayer.ItemDAOImpl;
+import dataaccesslayer.TransactionDAOImpl;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -21,6 +22,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Item;
+import model.Transaction;
+import model.User;
 
 public class CustomerPurchaseServlet extends HttpServlet {
 
@@ -30,6 +33,16 @@ public class CustomerPurchaseServlet extends HttpServlet {
         System.out.println("CustomerPurchaseServlet doPost called");
         ItemDAO itemDAO = new ItemDAOImpl();
         Map<Integer, Integer> quantities = new HashMap<>();
+
+        User user = (User) request.getSession().getAttribute("user");
+        if (user == null) {
+            // Handle the case where the user is not logged in (e.g., redirect to login page)
+            response.sendRedirect("login.jsp"); // or wherever your login page is
+            return;
+        }
+        int userId = user.getId();
+        System.out.println("Using userId: " + user.getName());
+        System.out.println("Using userId: " + userId);
         // Iterate over the request parameters to find those related to item quantities
         request.getParameterMap().forEach((key, values) -> {
             if (key.startsWith("quantity_")) {
@@ -68,6 +81,16 @@ public class CustomerPurchaseServlet extends HttpServlet {
                 Item item = itemDAO.getItemById(entry.getKey());
                 if (item != null) {
                     purchasedItemsInfo.put(item.getName(), entry.getValue());
+                
+                      // Create a new transaction object for each item
+                        Transaction transaction = new Transaction();
+                        transaction.setOrderId(confirmationNumber);
+                        transaction.setQuantity(entry.getValue());
+                        transaction.setPurchaserId(userId);
+                        transaction.setItemInventoryId(entry.getKey());
+                        transaction.setTransactionTime(new java.sql.Timestamp(new java.util.Date().getTime()));
+                        TransactionDAOImpl transactionDAO = new TransactionDAOImpl();
+                        transactionDAO.createTransaction(transaction);
                 }
                 BigDecimal lineTotal = item.getPrice().multiply(new BigDecimal(entry.getValue()));
                 lineTotals.put(item.getName(), lineTotal);
@@ -78,6 +101,7 @@ public class CustomerPurchaseServlet extends HttpServlet {
                 request.getSession().setAttribute("totalPrice", totalPrice);
 
             }
+             request.getSession().setAttribute("customerordertime", new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date()));
             request.getSession().setAttribute("customerpurchasedItems", purchasedItemsInfo);
             response.sendRedirect("purchaseSuccessful.jsp"); // Redirect to success page
         } else {

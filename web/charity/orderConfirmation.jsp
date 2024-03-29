@@ -20,7 +20,7 @@
         <meta charset="UTF-8">
         <title>Order Confirmation</title>
         <link rel="stylesheet" href="../styles.css">
-       <style>
+        <style>
             .submit-area {
                 display: flex;
                 justify-content: space-between;
@@ -54,8 +54,8 @@
                 <h3>Thank you <%= user.getName()%>!</h3>
                 <p>Your order has been placed successfully!</p>  
                 <p>Order Confirmation Number: <%= session.getAttribute("confirmationNumber")%></p>
-                <p>Order Date and Time: <%= new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date())%></p>
-          </div>
+                <p>Order Date and Time: <%= session.getAttribute("charityordertime")%></p>
+            </div>
             <div class="table-container">
                 <table>
                     <tr>
@@ -82,12 +82,12 @@
                     <button type="submit">Buy More</button>
                 </form>
 
-                <form action="http://localhost:8080/FWRP/user/transaction.jsp" method="get">
+                <form action="http://localhost:8080/FWRP/user/TransactionServlet" method="get">
                     <button type="submit">View Transaction</button>
                 </form>
             </div>
-            </div>
         </div>
-        <jsp:include page="../footer.jsp" />
-    </body>
+    </div>
+    <jsp:include page="../footer.jsp" />
+</body>
 </html>

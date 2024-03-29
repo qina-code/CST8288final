@@ -19,7 +19,7 @@ public class DBConnection {
 	private static Connection connection = null;
 
  //       private static final String PROPERTIES_FILE_PATH = "../../../data/database.properties";
-          private static final String PROPERTIES_FILE_PATH = "C:\\Users\\pc\\Documents\\NetBeansProjects\\CST8288final\\src\\data\\database.properties";
+          private static final String PROPERTIES_FILE_PATH = "C:\\Users\\Zhenghao Chen\\Documents\\NetBeansProjects\\Tianying\\CST8288final\\src\\data\\database.properties";
 
 
 	private DBConnection() {
@@ -40,18 +40,20 @@ public class DBConnection {
 		    String serverUrl = props.getProperty("serverUrl");
 		    String userString = props.getProperty("userString");
 		    String passwordString = props.getProperty("passwordString");
-
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+			} catch (ClassNotFoundException e) {
+				throw new SQLException("MySQL JDBC Driver not found.", e);
+			}
 			connection = DriverManager.getConnection(serverUrl, userString, passwordString);
-			  
+
 		}catch (SQLException e){
 		}
 	};
 	
 	public static Connection getConnection() {
-            if(connection == null) {
-                new DBConnection();
-            }
-            return connection;
+				new DBConnection();
+                return connection;
         }
 
         public static void closeConnection() {

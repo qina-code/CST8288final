@@ -19,7 +19,7 @@ public class Item {
         // Default constructor
     }
 
-    public Item(int id, String name, int quantity, Date expirationDate,BigDecimal price) {
+    public Item(String name, int id, int quantity, Date expirationDate) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;

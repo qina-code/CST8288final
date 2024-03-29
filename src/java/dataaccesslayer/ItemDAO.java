@@ -8,13 +8,16 @@ package dataaccesslayer;
  *
  * @author User
  */
+
 import java.util.List;
 import model.Item;
-        
+
 public interface ItemDAO {
     boolean addItem(Item item);
     boolean updateItemQuantity(int itemId, int newQuantity);
     List<Item> getItems();
+    List<Item> getItems2();
     List<Item> getSurplusItems();
     Item getItemById(int itemId);
+    void updateSurplusItemsList();
 }

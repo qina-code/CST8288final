@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="CST8288final:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/CST8288final_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="CST8288final/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="CST8288final" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/mysql-connector-j-8.0.33.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/jstl-api-1.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/standard-1.1.2.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

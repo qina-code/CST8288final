@@ -1,0 +1,204 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+
+/* 
+    Created on : Mar. 7, 2024, 9:08:40 a.m.
+    Author     : yvonn
+*/
+
+/* Global styles */
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #007bff;
+    overflow: hidden;
+    padding: 10px 0;
+}
+.navbar .project_name {
+    display:inline-block;
+    font-size: 40px;
+    weight:900;
+    float:left;
+    color:white;
+    margin-left: 20px
+}
+
+
+
+
+.navbar a {
+    float: right;
+    display: block;
+    color: #fff;
+    line-height: 67px;
+    vertical-align: auto;
+    padding: 0 20px;
+
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: #0056b3;
+}
+
+.item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items to the start of the flex container */
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #f2f2f2; /* Subtle background */
+    border-radius: 5px;
+}
+.item-name {
+    flex-grow: 1;
+}
+.quantity-area {
+    text-align: right;
+    position: relative; /* To position the availability text */
+}
+.item-quantity {
+
+    width: calc(100% - 120px); /* Increased width */
+    margin-right: 20px; /* Adjust as needed */
+
+}
+.availability {
+    font-size: 0.8em; /* Smaller text for availability */
+    color: #555;
+    position: absolute; /* Position absolutely within the quantity-area */
+    right: 0; /* Align to the right */
+    top: 38px; /* Push down beneath the quantity input */
+}
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #e1e1e1; /* Different background for header */
+    border-radius: 5px;
+    font-weight: bold;
+}
+.item-header span {
+    flex: 1;
+    text-align: left;
+}
+
+.item-header .item-quantity-header {
+    flex: 0 0 auto; /* Prevent it from growing */
+    padding-right: 20px; /* Align with the input fields */
+}
+.submit-area {
+
+    padding: 10px;
+    margin-bottom: 100px;
+}
+.order-details {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.table-container {
+    text-align: center;
+}
+
+table {
+    margin: 0 auto;
+    margin-bottom: 30px;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px 20px;
+    border: 1px solid #d3d3d3;
+
+}
+table th {
+    background-color: #f9f9f9;
+}
+
+
+#surplusIdentificationForm,
+#listSurplusItemsForm {
+    margin-top: 40px;
+}
+
+
+.dashboard_btn{
+    text-decoration: none;
+    width: 300px;
+    height: 50px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+
+.dashboard_btn:hover {
+    background-color: #0056b3;
+}
+

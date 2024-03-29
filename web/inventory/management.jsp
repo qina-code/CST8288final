@@ -1,3 +1,8 @@
+<%@ page import="model.Item" %>
+<%@ page import="java.util.List" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% List<Item> items = (List<Item>)request.getAttribute("ItemNameList"); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,11 +17,12 @@
         <div class="logo">Your Logo</div>
         <nav>
             <a href="../index.jsp">Home</a>
-            <a href="http://localhost:8080/FWRP/user/registration.html">Registration</a>   
-            <a href="http://localhost:8080/FWRP/user/login.html">Login</a>    
+            <a href="http://localhost:8080/FWRP/user/registration.jsp">Registration</a>   
+            <a href="http://localhost:8080/FWRP/user/login.jsp">Login</a>    
         </nav>
     </header>
 
+    <form id="linventorySectionForm" action="RetailerTransactionServlet" method="POST">
     <div class="container">
         <h1>Inventory Management</h1>
         <section id="inventorySection">
@@ -40,11 +46,15 @@
 
         <section id="surplusSection">
             <h2>Surplus Food Identification</h2>
-            <form id="surplusIdentificationForm" class="form">
+
                 <div class="form-group">
                     <label for="surplusItem">Select Surplus Item:</label>
                     <select id="surplusItem" name="surplusItem" required>
                         <!-- Options for surplus items will be dynamically populated -->
+                        <option value="请选择" selected="selected">请选择</option>
+                         <c:forEach items="<%=items %>" var="items">
+                             <option value='${items.id}'> ${items.name} </option>
+                         </c:forEach>
                     </select>
                 </div>
                 <div class="form-group">
@@ -52,7 +62,7 @@
                     <textarea id="surplusReason" name="surplusReason" rows="4" required></textarea>
                 </div>
                 <button type="submit">Identify Surplus</button>
-            </form>
+
         </section>
 
         <section id="listSurplusSection">
@@ -60,9 +70,14 @@
             <form id="listSurplusItemsForm" class="form">
                 <div class="form-group">
                     <label for="listedItem">Surplus Item:</label>
-                    <select id="listedItem" name="listedItem" required>
                         <!-- Options for listed surplus items will be dynamically populated -->
-                    </select>
+                        <select id="listedItem" name="listedItem" required>
+                            <!-- Options for surplus items will be dynamically populated -->
+                            <option value="请选择" selected="selected">请选择</option>
+                            <c:forEach items="<%=items %>" var="items">
+                                <option value='${items.id}'> ${items.name} </option>
+                            </c:forEach>
+                        </select>
                 </div>
                 <div class="form-group">
                     <label for="listingType">Listing Type:</label>
@@ -75,39 +90,6 @@
             </form>
         </section>
     </div>
-
-    <script>
-        // Function to dynamically populate the listed surplus items dropdown
-        function populateListedItems() {
-            // Assume you have an array of surplus items called 'surplusItems'
-            // Replace this with your actual array of surplus items
-            var surplusItems = ["Surplus Item 1", "Surplus Item 2", "Surplus Item 3"];
-
-            // Clear existing options
-            $('#surplusItem').empty();
-
-            // Add each surplus item to the dropdown
-            surplusItems.forEach(function(item) {
-                $('#surplusItem').append($('<option>', {
-                    value: item,
-                    text: item
-                }));
-            });
-        }
-
-        // Call the function to populate surplus items when the page loads
-        $(document).ready(function() {
-            populateListedItems();
-        });
-
-        // Handling form submission for listing surplus items
-        $('#listSurplusItemsForm').submit(function(event) {
-            event.preventDefault();
-            // Your code to handle form submission and listing surplus items goes here
-            alert('Listing Surplus Item: ' + $('#listedItem').val() + ' - Type: ' + $('#listingType').val());
-            // Assume you have a function to handle the form submission and listing of surplus items
-            // Replace the alert with your actual function call
-        });
-    </script>
+    </form>
 </body>
 </html>

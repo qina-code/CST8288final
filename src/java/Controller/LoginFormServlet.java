@@ -4,13 +4,17 @@
  */
 package Controller;
 
+import dataaccesslayer.ItemDAOImpl;
 import dataaccesslayer.UserDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.Item;
 import model.User;
 
 /**
@@ -35,6 +39,12 @@ public class LoginFormServlet extends HttpServlet {
         User userFound = userDAO.getUserByEmail(request.getParameter("email"));
         if(userFound!= null && userFound.getPassword().equals(request.getParameter("password"))){
             System.out.println("valid login");
+
+            ItemDAOImpl itemDAO = new ItemDAOImpl();
+            List<Item> items = itemDAO.getItems2(); // Fetch the list of items
+            System.out.println("userlogin getItemNameList retrieved: " + items);
+            request.getSession().setAttribute("LoginItemNameList", items);
+
             // Store user information in session
             request.getSession().setAttribute("user", userFound);
             response.sendRedirect("http://localhost:8080/FWRP/user/dashboard.jsp");

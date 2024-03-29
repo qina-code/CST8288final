@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+    <welcome-file-list>
+        <welcome-file>
+            index.jsp
+        </welcome-file>
+    </welcome-file-list>
+   
+    <!--login--> 
+    <servlet>
+        <servlet-name>LoginFormServlet</servlet-name>
+        <servlet-class>Controller.LoginFormServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LoginFormServlet</servlet-name>
+        <url-pattern>/user/LoginFormServlet</url-pattern>
+    </servlet-mapping>
+    <!--regiser-->
+    <servlet>
+        <servlet-name>RegistrationFormServlet</servlet-name>
+        <servlet-class>Controller.RegistrationFormServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RegistrationFormServlet</servlet-name>
+        <url-pattern>/user/RegistrationFormServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <!--log out-->
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>Controller.LogoutServlet</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/user/LogoutServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <!--transactions--> 
+    <servlet>
+        <servlet-name>TransactionServlet</servlet-name>
+        <servlet-class>Controller.TransactionServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TransactionServlet</servlet-name>
+        <url-pattern>/user/TransactionServlet</url-pattern>
+    </servlet-mapping>
+
+    
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    
+    <!--Show Items1--> 
+    <servlet>
+        <servlet-name>ItemListServlet</servlet-name>
+        <servlet-class>Controller.ItemListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ItemListServlet</servlet-name>
+        <url-pattern>/charity/ItemListServlet</url-pattern>
+    </servlet-mapping>
+
+    <!--Show Items2--> 
+    <servlet>
+        <servlet-name>ItemListCustomerServlet</servlet-name>
+        <servlet-class>Controller.ItemListCustomerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ItemListCustomerServlet</servlet-name>
+        <url-pattern>/customer/ItemListCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <!--Buy Items1--> 
+    <servlet>
+        <servlet-name>PurchaseServlet</servlet-name>
+        <servlet-class>Controller.PurchaseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PurchaseServlet</servlet-name>
+        <url-pattern>/charity/PurchaseServlet</url-pattern>
+    </servlet-mapping>
+    
+    <!--Buy Items2--> 
+    <servlet>
+        <servlet-name>CustomerPurchaseServlet</servlet-name>
+        <servlet-class>Controller.CustomerPurchaseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerPurchaseServlet</servlet-name>
+        <url-pattern>/customer/CustomerPurchaseServlet</url-pattern>
+    </servlet-mapping>
+</web-app>

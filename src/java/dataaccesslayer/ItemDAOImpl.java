@@ -15,7 +15,8 @@ import model.Item;
 
 public class ItemDAOImpl implements ItemDAO {
 
-    private Connection connection;
+    private final  Connection connection;
+
 
     public ItemDAOImpl() {
         connection = DBConnection.getConnection();

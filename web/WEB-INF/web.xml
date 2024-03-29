@@ -34,17 +34,32 @@
         <servlet-class>Controller.LogoutServlet</servlet-class>
     </servlet>
 
+
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/user/LogoutServlet</url-pattern>
     </servlet-mapping>
+
+
+    <!--transactions--> 
+    <servlet>
+        <servlet-name>TransactionServlet</servlet-name>
+        <servlet-class>Controller.TransactionServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TransactionServlet</servlet-name>
+        <url-pattern>/user/TransactionServlet</url-pattern>
+    </servlet-mapping>
+
+    
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     
-    <!--Show Items--> 
+    <!--Show Items1--> 
     <servlet>
         <servlet-name>ItemListServlet</servlet-name>
         <servlet-class>Controller.ItemListServlet</servlet-class>
@@ -54,7 +69,7 @@
         <url-pattern>/charity/ItemListServlet</url-pattern>
     </servlet-mapping>
 
-    <!--Show Items--> 
+    <!--Show Items2--> 
     <servlet>
         <servlet-name>ItemListCustomerServlet</servlet-name>
         <servlet-class>Controller.ItemListCustomerServlet</servlet-class>
@@ -63,7 +78,7 @@
         <servlet-name>ItemListCustomerServlet</servlet-name>
         <url-pattern>/customer/ItemListCustomerServlet</url-pattern>
     </servlet-mapping>
-    <!--Buy Items--> 
+    <!--Buy Items1--> 
     <servlet>
         <servlet-name>PurchaseServlet</servlet-name>
         <servlet-class>Controller.PurchaseServlet</servlet-class>
@@ -73,7 +88,7 @@
         <url-pattern>/charity/PurchaseServlet</url-pattern>
     </servlet-mapping>
     
-    <!--Buy Items--> 
+    <!--Buy Items2--> 
     <servlet>
         <servlet-name>CustomerPurchaseServlet</servlet-name>
         <servlet-class>Controller.CustomerPurchaseServlet</servlet-class>

@@ -25,41 +25,40 @@
     <body>
         <jsp:include page="../header.jsp" />
         <div class="container">
-        <%
-            if(user != null) {
-                out.println("<h2> Welcome, " + user.getName() + "!</h2>");
-                out.println("Your user type is: " + user.getType());
+            <%
+                if (user != null) {
+                    out.println("<h2> Welcome, " + user.getName() + "!</h2>");
+                    out.println("<p>Your user type is: " + user.getType() + ".</p>");
 
-       // Convert user type to lowercase for case-insensitive comparison
-                String userType = user.getType().toLowerCase();
+                    // Convert user type to lowercase for case-insensitive comparison
+                    String userType = user.getType().toLowerCase();
 
-                // Show different links based on user type
-                if (userType.equals("retailer")) {
-        %>
-                    <!-- Show links for admin -->
-                    <div>
-                        <a href="http://localhost:8080/FWRP/inventory/management.html">Inventory Management</a>
-                    </div>
-        <%
-                } else if (userType.equals("consumer")) {
-        %>
-                    <!-- Show links for customer -->
-                    <div>
-                        <a href="http://localhost:8080/FWRP/customer/ItemListCustomerServlet">Purchase Food</a>
-                    </div>
-        <%
-                } else if(userType.equals("charitable_organization")){
-%>
-                      <div>
-                        <a href="http://localhost:8080/FWRP/charity/ItemListServlet">Claim Food</a>
-                        </div>
-             <%       }
-            }
-        %>
-        <div>
-            <a href="http://localhost:8080/FWRP/user/LogoutServlet">Log Out</a>
+                    // Show different links based on user type
+                    if (userType.equals("retailer")) {
+            %>
+            <!-- Show links for admin -->
+
+            <a class="dashboard_btn" href="http://localhost:8080/FWRP/inventory/management.html">Inventory Management</a>
+            <%
+            } else if (userType.equals("consumer")) {
+            %>
+            <!-- Show links for customer -->
+
+            <div>
+                <a href="http://localhost:8080/FWRP/customer/ItemListCustomerServlet">Purchase Food</a>
+            </div>
+            <%
+                    } else if(userType.equals("charitable_organization")){
+            %>
+            <div>
+                <a href="http://localhost:8080/FWRP/charity/ItemListServlet">Claim Food</a>
+            </div>
+
+            <%       }
+           }
+            %>
+            <a class="dashboard_btn" href="http://localhost:8080/FWRP/user/TransactionServlet">View Transaction</a>
         </div>
-        </div>
-            <jsp:include page="../footer.jsp" />
+        <jsp:include page="../footer.jsp" />
     </body>
 </html>

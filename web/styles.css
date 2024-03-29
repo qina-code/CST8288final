@@ -42,6 +42,8 @@ label {
 
 input[type="text"],
 input[type="number"],
+input[type="email"],
+input[type="password"],
 input[type="date"],
 select,
 textarea {
@@ -99,6 +101,7 @@ button:hover {
 .navbar a:hover {
     background-color: #0056b3;
 }
+
 .item-row {
     display: flex;
     justify-content: space-between;
@@ -173,3 +176,29 @@ table th, table td {
 table th {
     background-color: #f9f9f9;
 }
+
+
+#surplusIdentificationForm,
+#listSurplusItemsForm {
+    margin-top: 40px; 
+}
+
+
+.dashboard_btn{
+    text-decoration: none;
+    width: 300px;
+    height: 50px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+
+.dashboard_btn:hover {
+    background-color: #0056b3;
+}
+

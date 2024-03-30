@@ -4,6 +4,7 @@
  */
 package dataaccesslayer;
 
+import java.util.List;
 import model.User;
 
 /**
@@ -15,4 +16,6 @@ public abstract class UserDAO {
     public abstract User getUserByEmail(String email);
     
     public abstract int createUser(User user);
+    
+    public abstract List<User> getSubscribedUsers();
 }

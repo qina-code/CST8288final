@@ -58,7 +58,6 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
         System.out.println("New user created");
         // Store user information in session
         request.getSession().setAttribute("user", newUser);
-        // Redirect to management.html upon successful registration
         response.sendRedirect("http://localhost:8080/FWRP/user/dashboard.jsp");
            
     } else {

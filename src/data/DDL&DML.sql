@@ -36,15 +36,12 @@ insert into itemInventory(name, quantity, price, expirationDate, owner_id) value
 
 create table transaction(
 	id INT primary key auto_increment,
-    order_id int,
     item_id int,
     quantity int,
     purchaser_id int,
-    transaction_time datetime,
     FOREIGN KEY (item_id) REFERENCES itemInventory(id),
     FOREIGN KEY (purchaser_id) REFERENCES user(id)
 );
-
 
 insert into transaction(item_id, quantity, purchaser_id) value(1, 50, 2);
 insert into transaction(item_id, quantity, purchaser_id) value(2, 20, 2);
@@ -54,9 +51,3 @@ insert into transaction(item_id, quantity, purchaser_id) value(4, 50, 3);
 select * from user;
 select * from itemInventory;
 select * from transaction;
-
-insert into transaction(order_id, item_id, quantity, purchaser_id,`transaction_time`) value(12345,1, 50, 2, now());
-insert into transaction(order_id,item_id, quantity, purchaser_id,`transaction_time`) value(12345,2, 20, 2, now());
-insert into transaction(order_id,item_id, quantity, purchaser_id,`transaction_time`) value(12345,3, 30, 3, now());
-insert into transaction(order_id,item_id, quantity, purchaser_id,`transaction_time`) value(12345,4, 50, 3, now());
-

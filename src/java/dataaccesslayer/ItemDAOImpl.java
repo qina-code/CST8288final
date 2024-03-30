@@ -60,6 +60,27 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
+    public List<Item> getItems2() {
+        List<Item> items = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM items";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                Item item = new Item();
+                item.setId(resultSet.getInt("id"));
+                item.setName(resultSet.getString("name"));
+                item.setQuantity(resultSet.getInt("quantity"));
+                items.add(item);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return items;
+    }
+
+    @Override
     public List<Item> getItems() {
         List<Item> items = new ArrayList<>();
         try {
@@ -130,5 +151,41 @@ public class ItemDAOImpl implements ItemDAO {
         }
         return item;
     }
+    @Override
+public void updateSurplusItemsList() {
+    try {
+        // Identify surplus items
+        List<Item> surplusItems = getSurplusItems();
+        
+        // Clear the surplus items table
+        clearSurplusItemsTable();
+        
+        // Add the newly identified surplus items to the surplus items table
+        for (Item item : surplusItems) {
+            addSurplusItem(item);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+private void clearSurplusItemsTable() throws SQLException {
+    String query = "DELETE FROM surplus_items";
+    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        preparedStatement.executeUpdate();
+    }
+}
+
+private void addSurplusItem(Item item) throws SQLException {
+    String query = "INSERT INTO surplus_items (name, quantity, expirationDate, price) VALUES (?, ?, ?, ?)";
+    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        preparedStatement.setString(1, item.getName());
+        preparedStatement.setInt(2, item.getQuantity());
+        preparedStatement.setDate(3, new java.sql.Date(item.getExpirationDate().getTime()));
+        preparedStatement.setBigDecimal(4, item.getPrice());
+        preparedStatement.executeUpdate();
+    }
+}
+
 
 }

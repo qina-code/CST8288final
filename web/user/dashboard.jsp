@@ -52,7 +52,10 @@
             %>
             <!-- Show links for admin -->
 
-            <a class="dashboard_btn" href="http://localhost:8080/FWRP/inventory/ItemNameServlet">Inventory Management</a>
+            <a class="dashboard_btn" href="http://localhost:8080/FWRP/inventory/ItemNameServlet">Add New Item</a>
+            <a class="dashboard_btn" href="http://localhost:8080/FWRP">Identify Surplus</a>
+            <a class="dashboard_btn" href="http://localhost:8080/FWRP">List Surplus Food</a>
+
             <%
             } else if (userType.equals("consumer")) {
             %>

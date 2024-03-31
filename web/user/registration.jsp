@@ -63,12 +63,33 @@
                     <option value="charitable_organization">Charitable Organization</option>
                 </select>
             </div>
-           
+           <div class="form-group">
+                <label for="city">City:</label>
+                <input type="input" id="city" name="city" required>
+            </div>
             <div class="form-group">
-            <label for="subscribed">Subscribed:</label>
-            <input type="checkbox" id="subscribed" name="subscribed">    
+                <label for="postal">Postal Code(ANA NAN): </label>
+                <input type="input" id="postal" name="postal" required>
+            </div>
+
+            
+            <div class="form-group">
+            <label for="category">Preference:</label>
+            <input type="checkbox" id="category" name="category" value = "1">Meat
+            <input type="checkbox" id="category" name="category" value = "2">Seafood 
+            <input type="checkbox" id="category" name="category" value = "3">Vegetables
+            <input type="checkbox" id="category" name="category" value = "4">Fruits 
+            <input type="checkbox" id="category" name="category" value = "5">Grains
+            <input type="checkbox" id="category" name="category" value = "6">Seasonings 
+            <input type="checkbox" id="category" name="category" value = "7">Cans
+            <input type="checkbox" id="category" name="category" value = "8">Snacks 
+            <input type="checkbox" id="category" name="category" value = "9">Others 
             </div>
             
+            <div class="form-group">
+            <label for="subscribed">Subscribe?</label>
+            <input type="checkbox" id="subscribed" name="subscribed">Check to get notification through email!    
+            </div>
             <button type="submit">Register</button>
         </form>
     </div>

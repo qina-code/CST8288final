@@ -36,7 +36,7 @@
                 <thead>
                     <tr>
                         <th>Order ID</th>
-                        <th>Item ID</th>
+                        <th>Item Name</th>
 
                         <th>Quantity</th>
                         <th>Transaction Time</th>
@@ -67,7 +67,7 @@
             </table>
         </div>
         <div class="submit-area">
-            <button type="button" onclick="history.back()">Go Back</button>
+            <button class="transaction_btn" type="button" onclick="history.back()">Go Back</button>
         </div>
         <jsp:include page="../footer.jsp" />
     </body>

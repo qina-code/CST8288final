@@ -33,6 +33,8 @@
         %>
                 <%-- If user is logged in, show logout link --%>
                 <a href="http://localhost:8080/FWRP/user/LogoutServlet">Logout</a>
+                <a href="http://localhost:8080/FWRP">Home</a>
+                <a href="http://localhost:8080/FWRP/user/dashboard.jsp">Dashboard</a>
         <%
             }
         %>

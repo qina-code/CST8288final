@@ -150,9 +150,13 @@ button:hover {
     padding-right: 20px; /* Align with the input fields */
 }
 .submit-area {
-
+    display:flex;
+    justify-content: center;
     padding: 10px;
     margin-bottom: 100px;
+}
+.transaction_btn{
+    width: 150px;  
 }
 .order-details {
     text-align: center;
@@ -198,7 +202,9 @@ table th {
 }
 
 
+
 .dashboard_btn:hover {
     background-color: #0056b3;
 }
+
 

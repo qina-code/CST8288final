@@ -13,15 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <header class="navbar">
-        <div class="logo">Your Logo</div>
-        <nav>
-            <a href="../index.jsp">Home</a>
-            <a href="http://localhost:8080/FWRP/user/registration.jsp">Registration</a>   
-            <a href="http://localhost:8080/FWRP/user/login.jsp">Login</a>    
-        </nav>
-    </header>
-
+    <jsp:include page="../header.jsp" />
     <form id="linventorySectionForm" action="RetailerTransactionServlet" method="POST">
     <div class="container">
         <h1>Inventory Management</h1>
@@ -91,5 +83,7 @@
         </section>
     </div>
     </form>
+    <jsp:include page="../footer.jsp" />
+
 </body>
 </html>

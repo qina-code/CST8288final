@@ -4,6 +4,8 @@
  */
 package Controller;
 
+import dataaccesslayer.LocationDAOImpl;
+import dataaccesslayer.PreferenceDAOImpl;
 import dataaccesslayer.UserDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,6 +13,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Location;
+import model.Preference;
 import model.User;
 
 /**
@@ -32,13 +36,18 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
     System.out.println("Receiving POST request");
 
     // Extract data from FormData
+    String city = request.getParameter("city");
+    String postal = request.getParameter("postal");
     String name = request.getParameter("name");
     String email = request.getParameter("email");
     String password = request.getParameter("password");
     String userType = request.getParameter("userType");
-    boolean subscribed = Boolean.parseBoolean(request.getParameter("subscribed"));
+    String[] selectedCategories = request.getParameterValues("category");
+    String subscribedParam = request.getParameter("subscribed");
+    boolean subscribed = (subscribedParam != null);
 
-    // Create a new user object
+// Create a new user object
+
     User newUser = new User(name, email, password, userType, subscribed);
 
     // Create a UserDAOImpl instance
@@ -56,6 +65,25 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
     // Attempt to create the user in the database
     if (userDAO.createUser(newUser) > 0) {
         System.out.println("New user created");
+        //store location and preference for the user
+        User thisUser = userDAO.getUserByEmail(email);
+        int userId = thisUser.getId();
+        
+        //LOCATION
+        LocationDAOImpl locationDAO = new LocationDAOImpl();
+        locationDAO.createLocation(city, postal, userId);
+        
+        //PREFERENCE
+        
+        if(selectedCategories != null && selectedCategories.length > 0){
+            PreferenceDAOImpl preferenceDAO = new PreferenceDAOImpl();
+            for(String category : selectedCategories){
+                int categoryId = Integer.parseInt(category);
+                preferenceDAO.createPreference(categoryId, userId);
+            }
+        }
+        
+          
         // Store user information in session
         request.getSession().setAttribute("user", newUser);
         response.sendRedirect("http://localhost:8080/FWRP/user/dashboard.jsp");

@@ -78,16 +78,17 @@ create table itemInventory(
     donate VARCHAR(45) default false,
     owner_id int,
     category_id int,
+    is_surplus VARCHAR(45) default false,
     FOREIGN KEY (owner_id) REFERENCES user(id),
 	FOREIGN KEY (category_id) REFERENCES category(id)
     
 );
 
-insert into itemInventory(name, quantity, price, expirationDate, donate, owner_id, category_id) value("cookie", 100, 2.99, '2024-04-03', true, 1, 8);
-insert into itemInventory(name, quantity, price, expirationDate, donate, owner_id, category_id) value("potato", 500, 6.99, '2024-04-06',true, 1, 3);
-insert into itemInventory(name, quantity, price, expirationDate, donate, owner_id, category_id) value("onion", 100, 3.99, '2024-06-01', false, 2, 3);
-insert into itemInventory(name, quantity, price, discount, expirationDate, owner_id, category_id) value("ham", 300, 10.99, 0.3, '2024-04-30', 2, 7);
-insert into itemInventory(name, quantity, price, discount, expirationDate, owner_id, category_id) value("apple", 300, 10.99, 0.7,  '2024-04-05', 2, 4);
+insert into itemInventory(name, quantity, price, expirationDate, donate, owner_id, category_id, is_surplus) value("cookie", 100, 2.99, '2024-04-03', true, 1, 8, true);
+insert into itemInventory(name, quantity, price, expirationDate, donate, owner_id, category_id, is_surplus) value("potato", 500, 6.99, '2024-04-06',true, 1, 3, true);
+insert into itemInventory(name, quantity, price, expirationDate, donate, owner_id, category_id, is_surplus) value("onion", 100, 3.99, '2024-06-01', false, 2, 3, false);
+insert into itemInventory(name, quantity, price, discount, expirationDate, owner_id, category_id, is_surplus) value("ham", 300, 10.99, 0.3, '2024-04-03', 2, 7, true);
+insert into itemInventory(name, quantity, price, discount, expirationDate, owner_id, category_id, is_surplus) value("apple", 300, 10.99, 0.7,  '2024-04-05', 2, 4, true);
 
 create table transaction(
 	id INT primary key auto_increment,

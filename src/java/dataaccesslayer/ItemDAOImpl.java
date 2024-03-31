@@ -63,7 +63,7 @@ public class ItemDAOImpl implements ItemDAO {
     public List<Item> getItems2() {
         List<Item> items = new ArrayList<>();
         try {
-            String query = "SELECT * FROM items";
+            String query = "SELECT * FROM iteminventory";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 

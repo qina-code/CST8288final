@@ -51,7 +51,7 @@
                     <label for="surplusItem">Select Surplus Item:</label>
                     <select id="surplusItem" name="surplusItem" required>
                         <!-- Options for surplus items will be dynamically populated -->
-                        <option value="请选择" selected="selected">请选择</option>
+                        <option value="choice" selected="selected">Please select</option>
                          <c:forEach items="<%=items %>" var="items">
                              <option value='${items.id}'> ${items.name} </option>
                          </c:forEach>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="form-group">
                     <label for="surplusReason">Reason for Surplus:</label>
-                    <textarea id="surplusReason" name="surplusReason" rows="4" required></textarea>
+                    <textarea id="surplusReason" name="surplusReason" rows="4"></textarea>
                 </div>
                 <button type="submit">Identify Surplus</button>
 
@@ -73,7 +73,7 @@
                         <!-- Options for listed surplus items will be dynamically populated -->
                         <select id="listedItem" name="listedItem" required>
                             <!-- Options for surplus items will be dynamically populated -->
-                            <option value="请选择" selected="selected">请选择</option>
+                            <option value="choice" selected="selected">Please select</option>
                             <c:forEach items="<%=items %>" var="items">
                                 <option value='${items.id}'> ${items.name} </option>
                             </c:forEach>

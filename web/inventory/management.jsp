@@ -32,6 +32,25 @@
                     <label for="expirationDate">Expiration Date:</label>
                     <input type="date" id="expirationDate" name="expirationDate" required>
                 </div>
+                <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" required>
+        </div>
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <select id="category" name="category" required>
+                <option value="">Select Category</option>
+                <option value="1">Meat</option>
+                <option value="2">Seafood</option>
+                <option value="3">Vegetables</option>
+                <option value="4">Fruits</option>
+                <option value="5">Grains</option>
+                <option value="6">Seasonings</option>
+                <option value="7">Cans</option>
+                <option value="8">Snacks</option>
+                <option value="9">Others</option>
+            </select>
+        </div>
                 <button type="submit">Add Item</button>
             </form>
         </section>

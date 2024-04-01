@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import dataaccesslayer.ItemDAOImpl;
 import dataaccesslayer.UserDAOImpl;
+import java.math.BigDecimal;
 import model.Item;
 import model.User;
 
@@ -25,6 +26,7 @@ public class RetailerTransactionServlet extends HttpServlet {
         String itemName = request.getParameter("itemName");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         String expirationDateStr = request.getParameter("expirationDate");
+        BigDecimal price = new BigDecimal(request.getParameter("price")); 
         
         // Parse the expiration date string into a Date object
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -40,7 +42,9 @@ public class RetailerTransactionServlet extends HttpServlet {
         ItemDAOImpl itemDAO = new ItemDAOImpl();
 
         // Create a new Item object
-        Item newItem = new Item(itemName, 0, quantity, expirationDate); // Pass 0 as id parameter
+       // Create a new Item object
+        Item newItem = new Item(0, itemName, quantity, price, expirationDate); // Pass 0 as id parameter
+
 
         // Add the new item to the database
         boolean itemAdded = itemDAO.addItem(newItem);
@@ -60,14 +64,14 @@ public class RetailerTransactionServlet extends HttpServlet {
             out.println("<h1>Item added successfully!</h1>");
             out.println("<p>Thank you for your submission.</p>");
             // Add link to go back to inventory management
-            out.println("<p><a href='/FWRP/inventory/management.jsp'>Go back to Inventory Management</a></p>");
+            out.println("<p><a href='/FWRP/inventory/add_item.jsp'>Go back to Inventory Management</a></p>");
 
             // Send notifications to subscribed users
             sendNotificationsToSubscribedUsers(newItem);
         } else {
             out.println("<h1>Error adding item</h1>");
             out.println("<p>There was an error while adding the item. Please try again later.</p>");
-            out.println("<p><a href='/FWRP/inventory/management.jsp'>Go back to Inventory Management</a></p>");
+            out.println("<p><a href='/FWRP/inventory/add_item.jsp'>Go back to Inventory Management</a></p>");
         }
     }
 

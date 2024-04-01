@@ -4,8 +4,8 @@
  */
 package model;
 
-import java.util.Date;
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class Item {
 
@@ -15,18 +15,20 @@ public class Item {
     private Date expirationDate;
     private BigDecimal price;
 
+    // Default constructor
     public Item() {
-        // Default constructor
     }
 
-    public Item(String name, int id, int quantity, Date expirationDate) {
+    // Constructor with all fields
+    public Item(int id, String name, int quantity, BigDecimal price, Date expirationDate) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
-        this.expirationDate = expirationDate;
         this.price = price;
+        this.expirationDate = expirationDate;
     }
 
+    // Getters and setters
     public int getId() {
         return id;
     }
@@ -67,3 +69,4 @@ public class Item {
         this.price = price;
     }
 }
+

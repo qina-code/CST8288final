@@ -12,7 +12,7 @@ $('#inventoryForm').submit(function(event) {
 
     // Send AJAX request to add the new item
    $.ajax({
-    url: '/FWRP/inventory/management',
+    url: '/FWRP/inventory/add_item',
     method: 'POST',
     data: {
         itemName: itemName,

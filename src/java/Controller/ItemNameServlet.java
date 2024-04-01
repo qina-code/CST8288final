@@ -32,7 +32,7 @@ public class ItemNameServlet extends HttpServlet {
         request.setAttribute("ItemNameList", items); // Store it as a request attribute
 
         // Forward to consumers.jsp
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/inventory/management.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/inventory/add_item.jsp");
         dispatcher.forward(request, response);
     }
 }

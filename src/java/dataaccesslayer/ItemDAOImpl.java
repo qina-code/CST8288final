@@ -63,17 +63,17 @@ public class ItemDAOImpl implements ItemDAO {
     public List<Item> getItems2() {
         List<Item> items = new ArrayList<>();
         try {
-            String query = "SELECT * FROM iteminventory";
+            String query = "SELECT * FROM itemInventory";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-            while (resultSet.next()) {
-                Item item = new Item();
-                item.setId(resultSet.getInt("id"));
-                item.setName(resultSet.getString("name"));
-                item.setQuantity(resultSet.getInt("quantity"));
-                items.add(item);
-            }
+           while (resultSet.next()) {
+            Item item = new Item();
+            item.setId(resultSet.getInt("id"));
+            item.setName(resultSet.getString("name"));
+            item.setQuantity(resultSet.getInt("quantity"));
+            items.add(item);
+        }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -88,22 +88,22 @@ public class ItemDAOImpl implements ItemDAO {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-            while (resultSet.next()) {
-                Item item = new Item();
-                item.setId(resultSet.getInt("id"));
-                item.setName(resultSet.getString("name"));
-                item.setQuantity(resultSet.getInt("quantity"));
-                item.setPrice(resultSet.getBigDecimal("price"));
-                item.setExpirationDate(resultSet.getDate("expirationDate"));
-                items.add(item);
-            }
+             while (resultSet.next()) {
+            Item item = new Item();
+            item.setId(resultSet.getInt("id"));
+            item.setName(resultSet.getString("name"));
+            item.setQuantity(resultSet.getInt("quantity"));
+            item.setPrice(resultSet.getBigDecimal("price"));
+            item.setExpirationDate(resultSet.getDate("expirationDate"));
+            items.add(item);
+        }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return items;
     }
 
-    @Override
+@Override
     public List<Item> getSurplusItems() {
         // Implement logic to identify surplus items (items nearing expiration or excess of demand)
         // For example, you can filter items based on expiration date
@@ -128,7 +128,6 @@ public class ItemDAOImpl implements ItemDAO {
         }
         return surplusItems;
     }
-
     @Override
     public Item getItemById(int itemId) {
         Item item = null;

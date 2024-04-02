@@ -38,6 +38,7 @@ public class UserDAOImpl extends UserDAO {
     @Override
     public int createUser(User user) {
         try (Connection connection = DBConnection.getConnection();
+                
              PreparedStatement pstmt = connection.prepareStatement("INSERT INTO user (name, email, password, type, subscribed) "
                      + "VALUES (?, ?, ?, ?, ?)")) {
             pstmt.setString(1, user.getName());

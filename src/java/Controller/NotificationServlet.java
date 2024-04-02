@@ -59,8 +59,8 @@ public class NotificationServlet extends HttpServlet {
         // Email configuration
         String host = "smtp-mail.outlook.com";
         String port = "587"; // or 465 for SSL
-        final String username = "qiu00038@algonquinlive.com";
-        final String password = "yA214414";
+        final String username = "xxx@algonquinlive.com";
+        final String password = "xxx";
 
         //get current item category
         int categoryId = 3;

@@ -85,7 +85,8 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>PurchaseServlet</servlet-name>
-        <url-pattern>/charity/PurchaseServlet</url-pattern>
+        <url-pattern>/customer/PurchaseServlet</url-pattern>
+
     </servlet-mapping>
     
     <!--Buy Items2--> 
@@ -93,8 +94,20 @@
         <servlet-name>CustomerPurchaseServlet</servlet-name>
         <servlet-class>Controller.CustomerPurchaseServlet</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>CustomerPurchaseServlet</servlet-name>
         <url-pattern>/customer/CustomerPurchaseServlet</url-pattern>
     </servlet-mapping>
+    
+        <!--Send Notification--> 
+    <servlet>
+        <servlet-name>NotificationServlet</servlet-name>
+        <servlet-class>Controller.NotificationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NotificationServlet</servlet-name>
+        <url-pattern>/NotificationServlet</url-pattern>
+    </servlet-mapping>
+    
 </web-app>
